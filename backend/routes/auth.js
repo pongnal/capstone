@@ -38,6 +38,15 @@ router.get("/users", async (req, res) => {
   }
 });
 
+// Endpoint to logout
+router.post("/logout", async (req, res) => {
+  try {
+    res.json({ message: "Logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Logout failed" });
+  }
+});
+
 // Endpoint to test the server (auth)
 router.post("/test", async (req, res) => {
   console.log("Test")

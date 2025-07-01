@@ -1,16 +1,61 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 import LoginPage from './auth/login';
 import RegisterPage from './auth/register';
+import Dashboard from './components/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import { useAuth } from './hooks/useAuth';
+
 function App() {
+  const { isAuthenticated, loading } = useAuth();
+
+  // Show loading while checking authentication
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
-
       {/* Route Definitions */}
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        {/* Public routes */}
+        <Route 
+          path="/login" 
+          element={
+            isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />
+          } 
+        />
+        <Route 
+          path="/register" 
+          element={
+            isAuthenticated ? <Navigate to="/" replace /> : <RegisterPage />
+          } 
+        />
+        
+        {/* Protected routes */}
+        <Route 
+          path="/" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Catch all route - redirect to home if authenticated, login if not */}
+        <Route 
+          path="*" 
+          element={
+            isAuthenticated ? <Navigate to="/" replace /> : <Navigate to="/login" replace />
+          } 
+        />
       </Routes>
     </>
   )
