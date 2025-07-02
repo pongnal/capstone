@@ -3,11 +3,9 @@ import { Bars3Icon, BellIcon, XMarkIcon, UserIcon } from '@heroicons/react/24/ou
 import { useAuth } from '../hooks/useAuth'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
+  { name: 'Dashboard', href: '/', current: false },
+  { name: 'Add Task', href: '/addTask', current: false },
+  { name: 'My Tasks', href: '/getTask', current: false },]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

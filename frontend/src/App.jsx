@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 import LoginPage from './auth/login';
 import RegisterPage from './auth/register';
+import AddTaskPage from './taskManager/addTask';
+import GetTaskPage from './taskManager/getTask';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './hooks/useAuth';
@@ -38,7 +40,22 @@ function App() {
             isAuthenticated ? <Navigate to="/" replace /> : <RegisterPage />
           } 
         />
-        
+        <Route 
+          path="/addTask" 
+          element={
+            <ProtectedRoute>
+              <AddTaskPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/getTask" 
+          element={
+            <ProtectedRoute>
+              <GetTaskPage />
+            </ProtectedRoute>
+          } 
+        />
         {/* Protected routes */}
         <Route 
           path="/" 

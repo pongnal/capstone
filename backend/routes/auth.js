@@ -23,7 +23,7 @@ router.post("/login", async (req, res) => {
     return res.status(401).send("Invalid credentials");
   }
 
-  const token = jwt.sign({ id: user._id }, "w4h9V7xYpL3QmZ8tR2fN6jBvXsC1KdPzF0qW8eYtUaMvJrXn", { expiresIn: "1h" });
+  const token = jwt.sign({ _id: user._id, email: user.email }, "w4h9V7xYpL3QmZ8tR2fN6jBvXsC1KdPzF0qW8eYtUaMvJrXn", { expiresIn: "1h" });
   res.json({ token });
 });
 
@@ -35,15 +35,6 @@ router.get("/users", async (req, res) => {
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch users" });
-  }
-});
-
-// Endpoint to logout
-router.post("/logout", async (req, res) => {
-  try {
-    res.json({ message: "Logged out successfully" });
-  } catch (error) {
-    res.status(500).json({ error: "Logout failed" });
   }
 });
 
