@@ -4,9 +4,9 @@ import LoginPage from './auth/login';
 import RegisterPage from './auth/register';
 import AddTaskPage from './taskManager/addTask';
 import GetTaskPage from './taskManager/getTask';
-import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './hooks/useAuth';
+import TaskDashboard from './components/TaskDashboard';
 
 function App() {
   const { isAuthenticated, loading } = useAuth();
@@ -61,7 +61,7 @@ function App() {
           path="/" 
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <TaskDashboard />
             </ProtectedRoute>
           } 
         />

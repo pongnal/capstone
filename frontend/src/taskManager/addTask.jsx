@@ -45,6 +45,7 @@ const AddTask = () => {
 
       const data = await response.json();
       setSuccess('Task created successfully!');
+      setTimeout(() => window.location.reload(), 1000);
       
       // Reset form
       setFormData({
@@ -62,11 +63,11 @@ const AddTask = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 pt-35">
+    <div>
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">Add New Task</h1>
+          <div className="flex items-center justify-center mb-6">
+            <h1 className="text-2xl font-bold text-gray-900 text-center">Add New Task</h1>
           </div>
           
           {/* Error Message */}

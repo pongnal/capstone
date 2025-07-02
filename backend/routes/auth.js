@@ -38,10 +38,4 @@ router.get("/users", async (req, res) => {
   }
 });
 
-// Endpoint to test the server (auth)
-router.post("/test", async (req, res) => {
-  console.log("Test")
-  res.send("Testing ok!")
-})
-
 module.exports = router;
